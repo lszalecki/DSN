@@ -1655,14 +1655,16 @@ namespace DiagnostykaStanuNawierzchni
                                                 }
 
                                                 XmlElement lokalizacjaSiec = newDoc.CreateElement("dsn", "lokalizacjaSiec", rootNew.NamespaceURI);
-                                                lokalizacjaSiec.SetAttribute("dlugosc", asbElement.GetAttribute("VST"));
+                                               // lokalizacjaSiec.SetAttribute("dlugosc", asbElement.GetAttribute("VST"));
+                                                lokalizacjaSiec.SetAttribute("dlugosc", Convert.ToString(odleglosc));
                                                 lokalizacjaSiec.SetAttribute("kodPRef", asbElement.GetAttribute("VNK"));
                                                 lokalizacjaSiec.SetAttribute("numerDrogi", zuordnungElement.GetAttribute("Nummer"));
                                                 lokalizacjaSiec.SetAttribute("numerJezdni", numerJezdni);
                                                 lokalizacjaSiec.SetAttribute("kierunek", kierunek);
                                                 lokalizacjaSiec.SetAttribute("kodNRef", asbElement.GetAttribute("NNK"));
                                                 lokalizacjaSiec.SetAttribute("pasRuchu", pasRuchu);
-                                                lokalizacjaSiec.SetAttribute("odleglosc", Convert.ToString(odleglosc));
+                                               // lokalizacjaSiec.SetAttribute("odleglosc", Convert.ToString(odleglosc));
+                                                lokalizacjaSiec.SetAttribute("odleglosc", asbElement.GetAttribute("VST"));
                                                 el.AppendChild(lokalizacjaSiec);
 
 
@@ -2072,14 +2074,16 @@ namespace DiagnostykaStanuNawierzchni
                                         }
 
                                         XmlElement lokalizacjaSiec = newDoc.CreateElement("dsn", "lokalizacjaSiec", rootNew.NamespaceURI);
-                                        lokalizacjaSiec.SetAttribute("dlugosc", asbElement.GetAttribute("VST"));
+                                        //lokalizacjaSiec.SetAttribute("dlugosc", asbElement.GetAttribute("VST"));
+                                        lokalizacjaSiec.SetAttribute("dlugosc", Convert.ToString(odleglosc));
                                         lokalizacjaSiec.SetAttribute("kodPRef", asbElement.GetAttribute("VNK"));
                                         lokalizacjaSiec.SetAttribute("numerDrogi", zuordnungElement.GetAttribute("Nummer"));
                                         lokalizacjaSiec.SetAttribute("numerJezdni", numerJezdni);
                                         lokalizacjaSiec.SetAttribute("kierunek", kierunek);
                                         lokalizacjaSiec.SetAttribute("kodNRef", asbElement.GetAttribute("NNK"));
                                         lokalizacjaSiec.SetAttribute("pasRuchu", pasRuchu);
-                                        lokalizacjaSiec.SetAttribute("odleglosc", Convert.ToString(odleglosc));
+                                        //lokalizacjaSiec.SetAttribute("odleglosc", Convert.ToString(odleglosc));
+                                        lokalizacjaSiec.SetAttribute("odleglosc", asbElement.GetAttribute("VST"));
                                         el.AppendChild(lokalizacjaSiec);
 
                                         if (loadedData != null && loadedData.Rows.Count != 0)
