@@ -40,6 +40,10 @@
             this.toolStripMenuItemOpenPhotoFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemXmlFolder = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemXmlMerge = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemPPNX = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemPPNY = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemPPI = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -49,6 +53,7 @@
             this.toolStripButtonOpenFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonOpenFolder = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonStart = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonProcessPhoto = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBoxOutputFolder = new System.Windows.Forms.ToolStripTextBox();
@@ -56,7 +61,7 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.folderBrowserDialogOutput = new System.Windows.Forms.FolderBrowserDialog();
             this.folderBrowserDialogPhoto = new System.Windows.Forms.FolderBrowserDialog();
-            this.toolStripButtonProcessPhoto = new System.Windows.Forms.ToolStripButton();
+            this.folderBrowserDialogMerge = new System.Windows.Forms.FolderBrowserDialog();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -68,7 +73,8 @@
             this.toolStripMenuItemFile,
             this.toolStripMenuItemSqlite,
             this.toolStripMenuItemPhoto,
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.toolStripMenuItemXmlMerge});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(951, 24);
@@ -140,7 +146,7 @@
             // toolStripMenuItemOpenPhotoFolder
             // 
             this.toolStripMenuItemOpenPhotoFolder.Name = "toolStripMenuItemOpenPhotoFolder";
-            this.toolStripMenuItemOpenPhotoFolder.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemOpenPhotoFolder.Size = new System.Drawing.Size(139, 22);
             this.toolStripMenuItemOpenPhotoFolder.Text = "Open Folder";
             this.toolStripMenuItemOpenPhotoFolder.Click += new System.EventHandler(this.toolStripMenuItemOpenPhotoFolder_Click);
             // 
@@ -158,6 +164,37 @@
             this.toolStripMenuItemXmlFolder.Size = new System.Drawing.Size(139, 22);
             this.toolStripMenuItemXmlFolder.Text = "Open Folder";
             this.toolStripMenuItemXmlFolder.Click += new System.EventHandler(this.toolStripMenuItemXmlFolder_Click);
+            // 
+            // toolStripMenuItemXmlMerge
+            // 
+            this.toolStripMenuItemXmlMerge.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemPPNX,
+            this.toolStripMenuItemPPNY,
+            this.toolStripMenuItemPPI});
+            this.toolStripMenuItemXmlMerge.Name = "toolStripMenuItemXmlMerge";
+            this.toolStripMenuItemXmlMerge.Size = new System.Drawing.Size(80, 20);
+            this.toolStripMenuItemXmlMerge.Text = "XML Merge";
+            // 
+            // toolStripMenuItemPPNX
+            // 
+            this.toolStripMenuItemPPNX.Name = "toolStripMenuItemPPNX";
+            this.toolStripMenuItemPPNX.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemPPNX.Text = "PP-Nx Merge";
+            this.toolStripMenuItemPPNX.Click += new System.EventHandler(this.toolStripMenuItemPPNX_Click);
+            // 
+            // toolStripMenuItemPPNY
+            // 
+            this.toolStripMenuItemPPNY.Name = "toolStripMenuItemPPNY";
+            this.toolStripMenuItemPPNY.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemPPNY.Text = "PP-Ny Merge";
+            this.toolStripMenuItemPPNY.Click += new System.EventHandler(this.toolStripMenuItemPPNY_Click);
+            // 
+            // toolStripMenuItemPPI
+            // 
+            this.toolStripMenuItemPPI.Name = "toolStripMenuItemPPI";
+            this.toolStripMenuItemPPI.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemPPI.Text = "PP-I Merge";
+            this.toolStripMenuItemPPI.Click += new System.EventHandler(this.toolStripMenuItemPPI_Click);
             // 
             // openFileDialog1
             // 
@@ -232,6 +269,17 @@
             this.toolStripButtonStart.Text = "Start";
             this.toolStripButtonStart.Click += new System.EventHandler(this.toolStripButtonStart_Click);
             // 
+            // toolStripButtonProcessPhoto
+            // 
+            this.toolStripButtonProcessPhoto.Enabled = false;
+            this.toolStripButtonProcessPhoto.Image = global::DiagnostykaStanuNawierzchni.Properties.Resources.bullet_triangle_glass_green;
+            this.toolStripButtonProcessPhoto.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonProcessPhoto.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonProcessPhoto.Name = "toolStripButtonProcessPhoto";
+            this.toolStripButtonProcessPhoto.Size = new System.Drawing.Size(118, 36);
+            this.toolStripButtonProcessPhoto.Text = "Process Photo";
+            this.toolStripButtonProcessPhoto.Click += new System.EventHandler(this.toolStripButtonProcessPhoto_Click);
+            // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
@@ -271,17 +319,6 @@
             this.richTextBox1.Size = new System.Drawing.Size(951, 265);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
-            // 
-            // toolStripButtonProcessPhoto
-            // 
-            this.toolStripButtonProcessPhoto.Enabled = false;
-            this.toolStripButtonProcessPhoto.Image = global::DiagnostykaStanuNawierzchni.Properties.Resources.bullet_triangle_glass_green;
-            this.toolStripButtonProcessPhoto.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonProcessPhoto.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonProcessPhoto.Name = "toolStripButtonProcessPhoto";
-            this.toolStripButtonProcessPhoto.Size = new System.Drawing.Size(118, 36);
-            this.toolStripButtonProcessPhoto.Text = "Process Photo";
-            this.toolStripButtonProcessPhoto.Click += new System.EventHandler(this.toolStripButtonProcessPhoto_Click);
             // 
             // Form1
             // 
@@ -338,6 +375,11 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemXmlFolder;
         private System.Windows.Forms.ToolStripButton toolStripButtonProcessPhoto;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemXmlMerge;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPPNX;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPPNY;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPPI;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogMerge;
     }
 }
 

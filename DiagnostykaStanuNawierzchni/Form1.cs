@@ -4027,6 +4027,80 @@ namespace DiagnostykaStanuNawierzchni
 
         }
 
+        private void toolStripMenuItemPPNX_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialogMerge = new FolderBrowserDialog();
+            DialogResult result = folderBrowserDialogMerge.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string dirPath = folderBrowserDialogMerge.SelectedPath;
+                string[] xmlFiles = Directory.GetFiles(dirPath, "*.xml");
+                if (xmlFiles != null && xmlFiles.Length != 0)
+                {
+                    List<String> filesList = new List<string>();
+                    foreach(string xmlFile in xmlFiles){
+                        if (xmlFile.Contains("PP-Nx"))
+                        {
+                            filesList.Add(xmlFile);
+                        }
+                    }
+                    XMLMerge mergeForm = new XMLMerge(filesList, "PP-Nx");
+                    mergeForm.ShowDialog();
+                }
+            }
+        }
+
+        private void toolStripMenuItemPPNY_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialogMerge = new FolderBrowserDialog();
+            DialogResult result = folderBrowserDialogMerge.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string dirPath = folderBrowserDialogMerge.SelectedPath;
+                string[] xmlFiles = Directory.GetFiles(dirPath, "*.xml");
+                if (xmlFiles != null && xmlFiles.Length != 0)
+                {
+                    List<String> filesList = new List<string>();
+                    foreach (string xmlFile in xmlFiles)
+                    {
+                        if (xmlFile.Contains("PP-Ny"))
+                        {
+                            filesList.Add(xmlFile);
+                        }
+                    }
+                    XMLMerge mergeForm = new XMLMerge(filesList, "PP-Ny");
+                    mergeForm.ShowDialog();
+                }
+            }
+        }
+
+        private void toolStripMenuItemPPI_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialogMerge = new FolderBrowserDialog();
+            DialogResult result = folderBrowserDialogMerge.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string dirPath = folderBrowserDialogMerge.SelectedPath;
+                string[] xmlFiles = Directory.GetFiles(dirPath, "*.xml");
+                if (xmlFiles != null && xmlFiles.Length != 0)
+                {
+                    List<String> filesList = new List<string>();
+                    foreach (string xmlFile in xmlFiles)
+                    {
+                        if (xmlFile.Contains("PP-I"))
+                        {
+                            filesList.Add(xmlFile);
+                        }
+                    }
+                    XMLMerge mergeForm = new XMLMerge(filesList, "PP-I");
+                    mergeForm.ShowDialog();
+                }
+            }
+        }
+
      
 
      

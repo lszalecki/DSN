@@ -83,6 +83,16 @@ namespace DiagnostykaStanuNawierzchni.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap documents_preferences {
+            get {
+                object obj = ResourceManager.GetObject("documents_preferences", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap folder_document {
             get {
                 object obj = ResourceManager.GetObject("folder_document", resourceCulture);
