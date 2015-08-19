@@ -18,9 +18,7 @@ namespace DiagnostykaStanuNawierzchni
         private List<String> filesList;
         private string filesType;
         private string pathToFiles;
-        private XmlDocument tp1aHeader;
-        private XmlDocument tp1bHeader;
-        private XmlDocument tp3Header;
+     
 
         public XMLMerge()
         {
@@ -134,6 +132,7 @@ namespace DiagnostykaStanuNawierzchni
            toolStripProgressBar1.Maximum = collectionItems.Count;
 
            string nameForMergedDoc = collectionItems[0].Text;
+           List<String> listDeletedID = new List<String>();
 
            int count = 0;
             foreach(ListViewItem item in collectionItems){
@@ -157,23 +156,65 @@ namespace DiagnostykaStanuNawierzchni
                         XmlNodeList list = doc.GetElementsByTagName("dsn:przejazdPomiarowy");
                         if (list != null && list.Count != 0)
                         {
-                            XmlElement rideEl = (XmlElement)list[0];
-                            string rideGmlId = rideEl.GetAttribute("gml:id") == null ? null : rideEl.GetAttribute("gml:id"); 
-                            XmlNodeList ridesFromMerged = mergedDoc.GetElementsByTagName("dsn:przejazdPomiarowy"); 
-
-                            foreach(XmlElement node in ridesFromMerged)
+                            for (int i = 0; i < list.Count; i++)
                             {
-                                string gmlID = node.GetAttribute("gml:id") == null ? null : node.GetAttribute("gml:id"); 
+                                XmlElement rideEl = (XmlElement)list[i];
+                                string rideGmlId = rideEl.GetAttribute("gml:id") == null ? null : rideEl.GetAttribute("gml:id");
+                                string rideGmlIdHeader = ((XmlElement)rideEl.FirstChild).GetAttribute("gml:id");
 
-                                if(rideGmlId.Equals(gmlID)){
-                                    rideEl.RemoveAttribute("id", "http://www.opengis.net/gml");
+                                XmlNodeList ridesFromMerged = mergedDoc.GetElementsByTagName("dsn:przejazdPomiarowy");
+
+                                foreach (XmlElement node in ridesFromMerged)
+                                {
+                                    string gmlID = node.GetAttribute("gml:id") == null ? null : node.GetAttribute("gml:id");
+                                    string gmlIDHeader = ((XmlElement)node.FirstChild).GetAttribute("gml:id") == null ? null : ((XmlElement)node.FirstChild).GetAttribute("gml:id");
+
+                                    if (rideGmlId.Equals(gmlID) && rideGmlIdHeader.Equals(gmlIDHeader))
+                                    {
+                                        rideEl.RemoveAttribute("id", "http://www.opengis.net/gml");
+                                        ((XmlElement)node.FirstChild).RemoveAttribute("id", "http://www.opengis.net/gml");
+
+                                        listDeletedID.Add(gmlID);
+                                        listDeletedID.Add(gmlIDHeader);
+
+                                    }
+                                    else if (rideGmlId.Equals(gmlID) && !rideGmlIdHeader.Equals(gmlIDHeader))
+                                    {
+                                        rideEl.RemoveAttribute("id", "http://www.opengis.net/gml");
+
+                                        listDeletedID.Add(gmlID);
+                                    }
+                                    else if (!rideGmlId.Equals(gmlID) && rideGmlIdHeader.Equals(gmlIDHeader))
+                                    {
+                                        ((XmlElement)node.FirstChild).RemoveAttribute("id", "http://www.opengis.net/gml");
+                                        listDeletedID.Add(gmlIDHeader);
+
+                                    }else{
+
+                                        if (listDeletedID.Contains(gmlID) && listDeletedID.Contains(gmlIDHeader))
+                                        {
+                                            rideEl.RemoveAttribute("id", "http://www.opengis.net/gml");
+                                            ((XmlElement)node.FirstChild).RemoveAttribute("id", "http://www.opengis.net/gml");
+
+                                        }
+                                        else if (listDeletedID.Contains(gmlID) && !listDeletedID.Contains(gmlIDHeader))
+                                        {
+                                            rideEl.RemoveAttribute("id", "http://www.opengis.net/gml");
+                                        }
+                                        else if (!listDeletedID.Contains(gmlID) && listDeletedID.Contains(gmlIDHeader))
+                                        {
+                                            ((XmlElement)node.FirstChild).RemoveAttribute("id", "http://www.opengis.net/gml");
+                                        }
+
+                                    }
                                 }
+
+                                XmlNode rNode = mergedDoc.ImportNode(rideEl, true);
+                                mergedDoc.DocumentElement.AppendChild(rNode);
                             }
+                           
 
-                           XmlNode rNode = mergedDoc.ImportNode(rideEl, true);
-                           mergedDoc.DocumentElement.AppendChild(rNode);
-
-                        }
+                        }//if
                     }
                 
                     //mergedDoc.Save(output+nameForMergedDoc);

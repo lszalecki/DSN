@@ -30,10 +30,10 @@
         {
             this.listView1 = new System.Windows.Forms.ListView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonMergeSelected = new System.Windows.Forms.Button();
             this.button1MergeAll = new System.Windows.Forms.Button();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +60,11 @@
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(200, 16);
+            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -85,6 +90,7 @@
             // 
             // button1MergeAll
             // 
+            this.button1MergeAll.Enabled = false;
             this.button1MergeAll.Image = global::DiagnostykaStanuNawierzchni.Properties.Resources.documents_preferences;
             this.button1MergeAll.Location = new System.Drawing.Point(17, 21);
             this.button1MergeAll.Name = "button1MergeAll";
@@ -93,11 +99,6 @@
             this.button1MergeAll.Text = "Merge All";
             this.button1MergeAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1MergeAll.UseVisualStyleBackColor = true;
-            // 
-            // toolStripProgressBar1
-            // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(200, 16);
             // 
             // XMLMerge
             // 
